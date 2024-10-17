@@ -1,10 +1,8 @@
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './routes/home';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./routes/home";
+import { ThemeContextProvider } from "./context/ThemeContext";
 
 function App() {
-
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -13,10 +11,10 @@ function App() {
   ]);
 
   return (
-    <div>
+    <ThemeContextProvider>
       <RouterProvider router={router} />
-    </div>
+    </ThemeContextProvider>
   );
 }
 
-export default App
+export default App;
