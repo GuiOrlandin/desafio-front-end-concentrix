@@ -2,7 +2,6 @@ import { useContext } from "react";
 
 import { ThemeContext } from "../../context/ThemeContext";
 
-import { FaRegTrashAlt } from "react-icons/fa";
 
 import {
   CardItemContainer,
@@ -22,7 +21,7 @@ interface CardItemProps {
 export default function CardItem({ item }: CardItemProps) {
   const { theme } = useContext(ThemeContext);
 
-  const formatedDate = new Date(item.date).toLocaleDateString("pt-br", {
+  const formattedDate = new Date(item.date).toLocaleDateString("pt-br", {
     day: "numeric",
     month: "long",
   });
@@ -41,7 +40,7 @@ export default function CardItem({ item }: CardItemProps) {
 
       <PriorityAndDateContainer>
         <p>Prioridade: {item.priority}</p>
-        <span>{formatedDate}</span>
+        <span>{formattedDate}</span>
       </PriorityAndDateContainer>
     </CardItemContainer>
   );

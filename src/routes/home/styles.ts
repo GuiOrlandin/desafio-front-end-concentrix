@@ -9,9 +9,9 @@ export const HomeContainer = styled.div<ThemeSelected>`
   flex-direction: column;
   box-sizing: border-box;
 
-  padding: 2rem;
+  padding: 2rem 2rem 1rem 2rem;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
   background: ${({ $variant }) =>
     $variant === "light" ? "#FFFEFE" : "#2C2C2D"};
@@ -33,8 +33,29 @@ export const ToggleThemeButton = styled.button`
     cursor: pointer;
   }
 `;
-export const CardItemContainer = styled.div`
+export const CardItemContainer = styled.main`
   display: flex;
   flex-wrap: wrap;
+  flex-grow: 1;
   gap: 2rem;
+
+  margin-bottom: 2rem;
+`;
+
+export const PaginationContainer = styled.div<ThemeSelected>`
+  display: flex;
+  gap: 0.1rem;
+  justify-content: center;
+
+  button {
+    color: ${({ $variant }) => ($variant === "light" ? "#3F3D45" : "#FFFEFE")};
+    background: none;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+      color: ${({ $variant }) =>
+        $variant === "light" ? "#9D9292" : "#B9B0B0"};
+    }
+  }
 `;
