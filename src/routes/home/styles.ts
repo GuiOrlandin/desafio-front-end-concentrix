@@ -27,6 +27,10 @@ export const HomeContainer = styled.div<ThemeSelected>`
 export const ToggleThemeButton = styled.button`
   background: none;
   border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const CardItemContainer = styled.div`
   display: flex;

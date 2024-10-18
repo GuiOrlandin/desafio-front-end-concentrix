@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./routes/home";
 import { ThemeContextProvider } from "./context/ThemeContext";
+import { ItemsContextProvider } from "./context/ItemsContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -12,7 +13,9 @@ function App() {
 
   return (
     <ThemeContextProvider>
-      <RouterProvider router={router} />
+      <ItemsContextProvider>
+        <RouterProvider router={router} />
+      </ItemsContextProvider>
     </ThemeContextProvider>
   );
 }
