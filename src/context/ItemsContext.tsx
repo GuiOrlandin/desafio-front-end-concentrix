@@ -11,7 +11,7 @@ export interface Item {
   name: string;
   description: string;
   date: Date;
-  property: string;
+  priority: string;
 }
 
 interface ItemsContentType {

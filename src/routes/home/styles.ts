@@ -18,6 +18,7 @@ export const HomeContainer = styled.div<ThemeSelected>`
 
   header {
     display: flex;
+    gap: 1rem;
     justify-content: flex-end;
     width: 100%;
     margin-bottom: 2rem;

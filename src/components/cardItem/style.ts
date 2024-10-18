@@ -23,6 +23,12 @@ export const CardItemContainer = styled.div<ThemeSelected>`
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
   }
+
+  svg {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const NameAndEditOrRemoveButtonsContainer = styled.div`
@@ -34,7 +40,8 @@ export const NameAndEditOrRemoveButtonsContainer = styled.div`
 
 export const EditOrRemoveButtonsContainer = styled.div`
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.4rem;
 `;
 
 export const PriorityAndDateContainer = styled.div`

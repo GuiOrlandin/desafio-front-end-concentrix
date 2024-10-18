@@ -11,27 +11,30 @@ import {
   NameAndEditOrRemoveButtonsContainer,
   PriorityAndDateContainer,
 } from "./style";
+import EditOrCreateItemDialog from "../createOrEditItem";
+import { Item } from "../../context/ItemsContext";
 
-export default function CardItem() {
+interface CardItemProps {
+  item: Item;
+}
+
+export default function CardItem({ item }: CardItemProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
     <CardItemContainer $variant={theme}>
       <NameAndEditOrRemoveButtonsContainer>
-        <h1>Caderno</h1>
+        <h1>{item.name}</h1>
 
         <EditOrRemoveButtonsContainer>
-          <CiEdit size={22} />
+          <EditOrCreateItemDialog dialogType="edit" initialItem={item} />
           <FaRegTrashAlt size={20} />
         </EditOrRemoveButtonsContainer>
       </NameAndEditOrRemoveButtonsContainer>
-      <p>
-        Descrição do item aqui, Descrição do item aqui, Descrição do item aqui,
-        Descrição do item aqui, Descrição do item aqui,{" "}
-      </p>
+      <p>{item.description}</p>
 
       <PriorityAndDateContainer>
-        <p>Prioridade: Alta</p>
+        <p>Prioridade: {item.priority}</p>
         <span>17 de outubro</span>
       </PriorityAndDateContainer>
     </CardItemContainer>
