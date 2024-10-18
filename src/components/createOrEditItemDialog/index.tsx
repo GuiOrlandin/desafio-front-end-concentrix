@@ -5,7 +5,7 @@ import {
   CloseButton,
   Content,
   CreateButton,
-  CreateTaskButton,
+  CreateItemButton,
   ErrorMessage,
   FormOfCreateOrEditItem,
   Overlay,
@@ -22,7 +22,7 @@ import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-interface EditOrCreateTaskDialogProps {
+interface EditOrCreateItemDialogProps {
   initialItem?: Item;
   dialogType: "edit" | "create";
 }
@@ -38,7 +38,7 @@ type ItemSchema = z.infer<typeof itemSchema>;
 export default function EditOrCreateItemDialog({
   initialItem,
   dialogType,
-}: EditOrCreateTaskDialogProps) {
+}: EditOrCreateItemDialogProps) {
   const [open, setOpen] = useState<boolean>(false);
 
   const isEditMode = dialogType === "edit";
@@ -77,8 +77,6 @@ export default function EditOrCreateItemDialog({
   ];
 
   function handleCreateItem(data: ItemSchema) {
-    console.log(data);
-
     createItem({
       description: data.description,
       date: new Date(),
@@ -115,9 +113,9 @@ export default function EditOrCreateItemDialog({
             <AiOutlineEdit size={24} color={colorOfEditIcon} />
           </TriggerDialogButton>
         ) : (
-          <CreateTaskButton onClick={() => setOpen(true)}>
+          <CreateItemButton onClick={() => setOpen(true)}>
             Crie seu item
-          </CreateTaskButton>
+          </CreateItemButton>
         )}
       </Dialog.Trigger>
       <Dialog.Portal>

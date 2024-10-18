@@ -6,7 +6,7 @@ import { CardItemContainer, HomeContainer, ToggleThemeButton } from "./styles";
 import { ThemeContext } from "../../context/ThemeContext";
 import CardItem from "../../components/cardItem";
 import { ItemsContext } from "../../context/ItemsContext";
-import EditOrCreateItemDialog from "../../components/createOrEditItem";
+import EditOrCreateItemDialog from "../../components/createOrEditItemDialog";
 
 export default function Home() {
   const { handleToggleTheme, theme } = useContext(ThemeContext);

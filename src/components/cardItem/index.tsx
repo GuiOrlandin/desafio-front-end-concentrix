@@ -11,8 +11,9 @@ import {
   NameAndEditOrRemoveButtonsContainer,
   PriorityAndDateContainer,
 } from "./style";
-import EditOrCreateItemDialog from "../createOrEditItem";
+import EditOrCreateItemDialog from "../createOrEditItemDialog";
 import { Item } from "../../context/ItemsContext";
+import DeleteItemDialog from "../deleteItemDialog";
 
 interface CardItemProps {
   item: Item;
@@ -33,7 +34,7 @@ export default function CardItem({ item }: CardItemProps) {
 
         <EditOrRemoveButtonsContainer>
           <EditOrCreateItemDialog dialogType="edit" initialItem={item} />
-          <FaRegTrashAlt size={20} />
+          <DeleteItemDialog item_id={item.id} />
         </EditOrRemoveButtonsContainer>
       </NameAndEditOrRemoveButtonsContainer>
       <Description>{item.description}</Description>

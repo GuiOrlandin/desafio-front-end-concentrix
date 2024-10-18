@@ -98,7 +98,7 @@ export const FormOfCreateOrEditItem = styled.form`
   }
 `;
 
-export const CreateTaskButton = styled.button`
+export const CreateItemButton = styled.button`
   display: flex;
   padding: 1rem 1rem;
   justify-content: center;
