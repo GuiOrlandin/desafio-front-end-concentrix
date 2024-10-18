@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useContext } from "react";
+import { useContext, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   CloseAndSaveChangesButtonsContainer,
@@ -39,6 +39,8 @@ export default function EditOrCreateItemDialog({
   initialItem,
   dialogType,
 }: EditOrCreateTaskDialogProps) {
+  const [open, setOpen] = useState<boolean>(false);
+
   const isEditMode = dialogType === "edit";
 
   const {
@@ -86,6 +88,8 @@ export default function EditOrCreateItemDialog({
     });
 
     reset();
+
+    setOpen(false);
   }
 
   function handleEditItem(editedData: ItemSchema) {
@@ -96,17 +100,24 @@ export default function EditOrCreateItemDialog({
       name: editedData.name,
       priority: editedData.priority,
     });
+
+    setOpen(false);
   }
 
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open}>
       <Dialog.Trigger asChild>
         {dialogType === "edit" ? (
-          <TriggerDialogButton data-testid="edit-item-button">
+          <TriggerDialogButton
+            onClick={() => setOpen(true)}
+            data-testid="edit-item-button"
+          >
             <AiOutlineEdit size={24} color={colorOfEditIcon} />
           </TriggerDialogButton>
         ) : (
-          <CreateTaskButton>Crie seu item</CreateTaskButton>
+          <CreateTaskButton onClick={() => setOpen(true)}>
+            Crie seu item
+          </CreateTaskButton>
         )}
       </Dialog.Trigger>
       <Dialog.Portal>
@@ -146,9 +157,9 @@ export default function EditOrCreateItemDialog({
                     <CreateButton type="submit">Criar</CreateButton>
                   )}
 
-                  <Dialog.Close asChild>
-                    <CloseButton>Fechar</CloseButton>
-                  </Dialog.Close>
+                  <CloseButton onClick={() => setOpen(false)}>
+                    Fechar
+                  </CloseButton>
                 </CloseAndSaveChangesButtonsContainer>
               </FormOfCreateOrEditItem>
             </>
@@ -186,9 +197,9 @@ export default function EditOrCreateItemDialog({
                     <SaveButton>Editar</SaveButton>
                   )}
 
-                  <Dialog.Close asChild>
-                    <CloseButton>Fechar</CloseButton>
-                  </Dialog.Close>
+                  <CloseButton onClick={() => setOpen(false)}>
+                    Fechar
+                  </CloseButton>
                 </CloseAndSaveChangesButtonsContainer>
               </FormOfCreateOrEditItem>
             </>

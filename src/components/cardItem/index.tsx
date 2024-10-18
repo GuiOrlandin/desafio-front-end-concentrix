@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 
 import { FaRegTrashAlt } from "react-icons/fa";
-import { CiEdit } from "react-icons/ci";
 
 import {
   CardItemContainer,
+  Description,
   EditOrRemoveButtonsContainer,
   NameAndEditOrRemoveButtonsContainer,
   PriorityAndDateContainer,
@@ -21,6 +21,11 @@ interface CardItemProps {
 export default function CardItem({ item }: CardItemProps) {
   const { theme } = useContext(ThemeContext);
 
+  const formatedDate = new Date(item.date).toLocaleDateString("pt-br", {
+    day: "numeric",
+    month: "long",
+  });
+
   return (
     <CardItemContainer $variant={theme}>
       <NameAndEditOrRemoveButtonsContainer>
@@ -31,11 +36,11 @@ export default function CardItem({ item }: CardItemProps) {
           <FaRegTrashAlt size={20} />
         </EditOrRemoveButtonsContainer>
       </NameAndEditOrRemoveButtonsContainer>
-      <p>{item.description}</p>
+      <Description>{item.description}</Description>
 
       <PriorityAndDateContainer>
         <p>Prioridade: {item.priority}</p>
-        <span>17 de outubro</span>
+        <span>{formatedDate}</span>
       </PriorityAndDateContainer>
     </CardItemContainer>
   );

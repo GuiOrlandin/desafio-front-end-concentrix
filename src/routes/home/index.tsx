@@ -5,16 +5,12 @@ import { MdWbSunny } from "react-icons/md";
 import { CardItemContainer, HomeContainer, ToggleThemeButton } from "./styles";
 import { ThemeContext } from "../../context/ThemeContext";
 import CardItem from "../../components/cardItem";
-import { Item, ItemsContext } from "../../context/ItemsContext";
+import { ItemsContext } from "../../context/ItemsContext";
 import EditOrCreateItemDialog from "../../components/createOrEditItem";
 
 export default function Home() {
   const { handleToggleTheme, theme } = useContext(ThemeContext);
-  const { items, createItem, deleteItem, editItem } = useContext(ItemsContext);
-
-  function handleDeleteItem() {
-    deleteItem("a2w41241");
-  }
+  const { items } = useContext(ItemsContext);
 
   return (
     <HomeContainer $variant={theme}>
