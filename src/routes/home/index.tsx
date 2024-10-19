@@ -11,6 +11,7 @@ import {
   ToggleThemeButton,
   FilterSelect,
   CreateItemButtonAndToggleThemeContainer,
+  PaginationButton,
 } from "./styles";
 import { ThemeContext } from "../../context/ThemeContext";
 import CardItem from "../../components/cardItem";
@@ -47,6 +48,8 @@ export default function Home() {
   const totalPages = Math.ceil(filteredItems.length / limit);
 
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+
+  console.log("Current page: ", currentPage);
 
   return (
     <HomeContainer $variant={theme}>
@@ -98,9 +101,14 @@ export default function Home() {
 
       <PaginationContainer $variant={theme}>
         {pages.map((page) => (
-          <button key={page} onClick={() => setCurrentPage(page)}>
+          <PaginationButton
+            key={page}
+            onClick={() => setCurrentPage(page)}
+            $isActive={currentPage === page}
+            $variant={theme}
+          >
             {page}
-          </button>
+          </PaginationButton>
         ))}
       </PaginationContainer>
     </HomeContainer>

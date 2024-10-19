@@ -3,6 +3,9 @@ import styled from "styled-components";
 interface ThemeSelected {
   $variant: string;
 }
+interface IsSelected extends ThemeSelected {
+  $isActive: boolean;
+}
 
 export const HomeContainer = styled.div<ThemeSelected>`
   display: flex;
@@ -76,16 +79,20 @@ export const PaginationContainer = styled.div<ThemeSelected>`
   display: flex;
   gap: 0.1rem;
   justify-content: center;
+`;
 
-  button {
-    color: ${({ $variant }) => ($variant === "light" ? "#3F3D45" : "#FFFEFE")};
-    background: none;
-    border: none;
+export const PaginationButton = styled.button<IsSelected>`
+  color: ${({ $isActive, $variant }) =>
+    $variant === "light" && !$isActive ? "#3F3D45" : "#FFFEFE"};
+  color: ${({ $isActive, $variant }) =>
+    $isActive && $variant === "light" && "#B9B0B0"};
+  color: ${({ $isActive, $variant }) =>
+    $isActive && $variant === "dark" && "#B9B0B0"};
+  cursor: pointer;
+  background: none;
+  border: none;
 
-    &:hover {
-      cursor: pointer;
-      color: ${({ $variant }) =>
-        $variant === "light" ? "#9D9292" : "#B9B0B0"};
-    }
+  &:hover {
+    color: ${({ $variant }) => ($variant === "light" ? "#9D9292" : "#B9B0B0")};
   }
 `;
