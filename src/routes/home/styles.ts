@@ -16,6 +16,8 @@ export const HomeContainer = styled.div<ThemeSelected>`
   background: ${({ $variant }) =>
     $variant === "light" ? "#FFFEFE" : "#2C2C2D"};
 
+  transition: background 0.3s ease-in-out;
+
   header {
     display: flex;
     gap: 1rem;
