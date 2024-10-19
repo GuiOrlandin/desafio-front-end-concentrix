@@ -124,3 +124,8 @@ export const ErrorMessage = styled.p`
   top: 9.6rem;
   position: fixed;
 `;
+export const ErrorMessageInDescription = styled.p`
+  color: red;
+  top: 16.2rem;
+  position: fixed;
+`;

@@ -7,6 +7,7 @@ import {
   CreateButton,
   CreateItemButton,
   ErrorMessage,
+  ErrorMessageInDescription,
   FormOfCreateOrEditItem,
   Overlay,
   SaveButton,
@@ -29,7 +30,7 @@ interface EditOrCreateItemDialogProps {
 
 const itemSchema = z.object({
   name: z.string().min(3, "O nome deve conter no mínimo 3 caracteres."),
-  description: z.string(),
+  description: z.string().min(1, "Description não pode ser vazio"),
   priority: z.string(),
 });
 
@@ -57,8 +58,6 @@ export default function EditOrCreateItemDialog({
           priority: initialItem?.priority,
         }
       : {
-          name: "",
-          description: "",
           priority: "Alta",
         },
   });
@@ -131,7 +130,8 @@ export default function EditOrCreateItemDialog({
                   placeholder="digite o nome do seu item"
                   {...register("name")}
                 />
-                {errors.name && (
+                {errors.name?.message ===
+                  "O nome deve conter no mínimo 3 caracteres." && (
                   <ErrorMessage>{errors.name.message}</ErrorMessage>
                 )}
                 <label>Descrição do seu item</label>
@@ -139,6 +139,11 @@ export default function EditOrCreateItemDialog({
                   placeholder="digite a descrição do seu item"
                   {...register("description")}
                 />
+                {errors.description && (
+                  <ErrorMessageInDescription>
+                    {errors.description.message}
+                  </ErrorMessageInDescription>
+                )}
                 <label>Prioridade do seu item</label>
                 <select {...register("priority")}>
                   {priorityTypes.map((priority, index) => (
@@ -171,7 +176,8 @@ export default function EditOrCreateItemDialog({
                   placeholder="digite o nome do seu item"
                   {...register("name")}
                 />
-                {errors.name && (
+                {errors.name?.message ===
+                  "O nome deve conter no mínimo 3 caracteres." && (
                   <ErrorMessage>{errors.name.message}</ErrorMessage>
                 )}
                 <label>Descrição do seu item</label>
@@ -179,6 +185,11 @@ export default function EditOrCreateItemDialog({
                   placeholder="digite a descrição do seu item"
                   {...register("description")}
                 />
+                {errors.description && (
+                  <ErrorMessageInDescription>
+                    {errors.description.message}
+                  </ErrorMessageInDescription>
+                )}
                 <label>Prioridade do seu item</label>
                 <select {...register("priority")}>
                   {priorityTypes.map((priority, index) => (
