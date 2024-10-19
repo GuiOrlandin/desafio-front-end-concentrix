@@ -1,8 +1,31 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 interface ThemeSelected {
   $variant: string;
+  $isDeleting: boolean;
 }
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); 
+  }
+`;
+
+const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95); 
+  }
+`;
 
 export const CardItemContainer = styled.div<ThemeSelected>`
   display: flex;
@@ -20,12 +43,19 @@ export const CardItemContainer = styled.div<ThemeSelected>`
 
   color: ${({ $variant }) => ($variant === "light" ? "#3F3D45" : "#FFFEFE")};
 
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-
   &:hover {
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
   }
+
+  ${({ $isDeleting }) =>
+    $isDeleting
+      ? css`
+          animation: ${fadeOut} 0.3s forwards;
+        `
+      : css`
+          animation: ${fadeIn} 0.3s forwards;
+        `}
 
   svg {
     &:hover {

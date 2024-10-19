@@ -1,7 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { ThemeContext } from "../../context/ThemeContext";
-
 
 import {
   CardItemContainer,
@@ -11,7 +10,7 @@ import {
   PriorityAndDateContainer,
 } from "./style";
 import EditOrCreateItemDialog from "../createOrEditItemDialog";
-import { Item } from "../../context/ItemsContext";
+import { Item, ItemsContext } from "../../context/ItemsContext";
 import DeleteItemDialog from "../deleteItemDialog";
 
 interface CardItemProps {
@@ -20,20 +19,27 @@ interface CardItemProps {
 
 export default function CardItem({ item }: CardItemProps) {
   const { theme } = useContext(ThemeContext);
+  const { deleteItem } = useContext(ItemsContext);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const formattedDate = new Date(item.date).toLocaleDateString("pt-br", {
     day: "numeric",
     month: "long",
   });
 
+  function handleDelete() {
+    setIsDeleting(true);
+    setTimeout(() => deleteItem(item.id), 300);
+  }
+
   return (
-    <CardItemContainer $variant={theme}>
+    <CardItemContainer $variant={theme} $isDeleting={isDeleting}>
       <NameAndEditOrRemoveButtonsContainer>
         <h1>{item.name}</h1>
 
         <EditOrRemoveButtonsContainer>
           <EditOrCreateItemDialog dialogType="edit" initialItem={item} />
-          <DeleteItemDialog item_id={item.id} />
+          <DeleteItemDialog onConfirmDelete={() => handleDelete()} />
         </EditOrRemoveButtonsContainer>
       </NameAndEditOrRemoveButtonsContainer>
       <Description>{item.description}</Description>

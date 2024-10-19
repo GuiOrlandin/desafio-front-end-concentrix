@@ -11,24 +11,18 @@ import {
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import { ItemsContext } from "../../context/ItemsContext";
 
 interface DeleteItemDialogProps {
-  item_id: string;
+  onConfirmDelete: () => void;
 }
 
-export default function DeleteItemDialog({ item_id }: DeleteItemDialogProps) {
+export default function DeleteItemDialog({
+  onConfirmDelete,
+}: DeleteItemDialogProps) {
   const [open, setOpen] = useState<boolean>(false);
   const { theme } = useContext(ThemeContext);
-  const { deleteItem } = useContext(ItemsContext);
 
   const colorOfDeleteIcon = theme === "dark" ? "white" : "#3F3D45";
-
-  function handleCreateItem() {
-    deleteItem(item_id);
-
-    setOpen(false);
-  }
 
   return (
     <Dialog.Root open={open}>
@@ -46,7 +40,11 @@ export default function DeleteItemDialog({ item_id }: DeleteItemDialogProps) {
           <Dialog.Title>Deseja deletar seu item</Dialog.Title>
 
           <CloseAndSaveChangesButtonsContainer>
-            <DeleteButton onClick={() => handleCreateItem()}>
+            <DeleteButton
+              onClick={() => {
+                onConfirmDelete(), setOpen(false);
+              }}
+            >
               Deletar
             </DeleteButton>
             <CloseButton onClick={() => setOpen(false)}>Fechar</CloseButton>
