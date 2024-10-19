@@ -31,8 +31,7 @@ const fadeOut = keyframes`
 export const CardItemContainer = styled.div<ThemeSelected>`
   display: flex;
   flex-direction: column;
-  padding: 0 2rem 1rem 2rem;
-  width: 16rem;
+  padding: 0 1rem 1rem 2rem;
   height: 21rem;
   border-radius: 8px;
   position: relative;
@@ -96,8 +95,17 @@ export const Description = styled.p`
 `;
 export const PriorityAndDateContainer = styled.div`
   display: flex;
-  gap: 2.6rem;
+  width: 80%;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
   top: 17.6rem;
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  span {
+    font-size: 0.8rem;
+  }
 `;

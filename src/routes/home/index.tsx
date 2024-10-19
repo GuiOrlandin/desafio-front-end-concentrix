@@ -12,6 +12,7 @@ import {
   FilterSelect,
   CreateItemButtonAndToggleThemeContainer,
   PaginationButton,
+  FilterSelectContainer,
 } from "./styles";
 import { ThemeContext } from "../../context/ThemeContext";
 import CardItem from "../../components/cardItem";
@@ -49,8 +50,6 @@ export default function Home() {
 
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
-  console.log("Current page: ", currentPage);
-
   return (
     <HomeContainer $variant={theme}>
       <header>
@@ -62,24 +61,26 @@ export default function Home() {
             value={filterName}
             onChange={(e) => setFilterName(e.target.value)}
           />
-          <FilterSelect
-            $variant={theme}
-            value={filterPriority}
-            onChange={(e) => setFilterPriority(e.target.value)}
-          >
-            <option value="">Todas as Prioridades</option>
-            <option value="alta">Alta</option>
-            <option value="média">Média</option>
-            <option value="baixa">Baixa</option>
-          </FilterSelect>
-          <FilterSelect
-            $variant={theme}
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-          >
-            <option value="newest">Mais Novos</option>
-            <option value="oldest">Mais Antigos</option>
-          </FilterSelect>
+          <FilterSelectContainer>
+            <FilterSelect
+              $variant={theme}
+              value={filterPriority}
+              onChange={(e) => setFilterPriority(e.target.value)}
+            >
+              <option value="">Todas as Prioridades</option>
+              <option value="alta">Alta</option>
+              <option value="média">Média</option>
+              <option value="baixa">Baixa</option>
+            </FilterSelect>
+            <FilterSelect
+              $variant={theme}
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
+              <option value="newest">Mais Novos</option>
+              <option value="oldest">Mais Antigos</option>
+            </FilterSelect>
+          </FilterSelectContainer>
         </FilterContainer>
         <CreateItemButtonAndToggleThemeContainer>
           <EditOrCreateItemDialog dialogType="create" />
