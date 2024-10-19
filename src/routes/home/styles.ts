@@ -21,7 +21,7 @@ export const HomeContainer = styled.div<ThemeSelected>`
   header {
     display: flex;
     gap: 1rem;
-    justify-content: flex-end;
+    justify-content: space-between;
     width: 100%;
     margin-bottom: 2rem;
   }
@@ -34,6 +34,34 @@ export const ToggleThemeButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const CreateItemButtonAndToggleThemeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const FilterSelect = styled.select<ThemeSelected>`
+  background: ${({ $variant }) => ($variant === "light" ? "#F5F5F5" : "white")};
+
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+`;
+
+export const FilterInput = styled.input<ThemeSelected>`
+  background: ${({ $variant }) => ($variant === "light" ? "#F5F5F5" : "white")};
+  margin-right: 1rem;
+  width: 20rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+`;
+
+export const FilterContainer = styled.div`
+  display: flex;
 `;
 export const CardItemContainer = styled.main`
   display: flex;
