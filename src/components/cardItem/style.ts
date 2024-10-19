@@ -3,6 +3,7 @@ import styled, { css, keyframes } from "styled-components";
 interface ThemeSelected {
   $variant: string;
   $isDeleting: boolean;
+  $isEdited: boolean;
 }
 
 const fadeIn = keyframes`
@@ -43,20 +44,23 @@ export const CardItemContainer = styled.div<ThemeSelected>`
 
   color: ${({ $variant }) => ($variant === "light" ? "#3F3D45" : "#FFFEFE")};
 
-  &:hover {
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-  }
+  ${({ $isDeleting, $isEdited }) => {
+    if ($isDeleting) {
+      return css`
+        animation: ${fadeOut} 0.3s forwards;
+      `;
+    }
 
-  ${({ $isDeleting }) =>
-    $isDeleting
-      ? css`
-          animation: ${fadeOut} 0.3s forwards;
-        `
-      : css`
-          animation: ${fadeIn} 0.3s forwards;
-        `}
+    if ($isEdited) {
+      return css`
+        animation: transform scale(1) 0.5s ease forwards;
+      `;
+    }
 
+    return css`
+      animation: ${fadeIn} 0.3s forwards;
+    `;
+  }}
   svg {
     &:hover {
       cursor: pointer;

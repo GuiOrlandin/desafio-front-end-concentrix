@@ -26,6 +26,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 interface EditOrCreateItemDialogProps {
   initialItem?: Item;
   dialogType: "edit" | "create";
+  onConfirmEdit?: (data: Item) => void;
 }
 
 const itemSchema = z.object({
@@ -39,6 +40,7 @@ type ItemSchema = z.infer<typeof itemSchema>;
 export default function EditOrCreateItemDialog({
   initialItem,
   dialogType,
+  onConfirmEdit,
 }: EditOrCreateItemDialogProps) {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -63,7 +65,7 @@ export default function EditOrCreateItemDialog({
   });
 
   const { theme } = useContext(ThemeContext);
-  const { createItem, editItem } = useContext(ItemsContext);
+  const { createItem } = useContext(ItemsContext);
 
   const randomId = uuidv4();
 
@@ -90,7 +92,7 @@ export default function EditOrCreateItemDialog({
   }
 
   function handleEditItem(editedData: ItemSchema) {
-    editItem({
+    onConfirmEdit!({
       description: editedData.description,
       date: initialItem!.date,
       id: initialItem!.id,
