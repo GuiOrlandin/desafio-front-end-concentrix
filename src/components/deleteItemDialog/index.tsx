@@ -10,7 +10,7 @@ import {
 
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useContext, useState } from "react";
-import { ThemeContext } from "../../context/themeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 interface DeleteItemDialogProps {
   onConfirmDelete: () => void;

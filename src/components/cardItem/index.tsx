@@ -10,7 +10,7 @@ import {
 import EditOrCreateItemDialog from "../createOrEditItemDialog";
 import { Item, ItemsContext } from "../../context/ItemsContext";
 import DeleteItemDialog from "../deleteItemDialog";
-import { ThemeContext } from "../../context/themeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 interface CardItemProps {
   item: Item;

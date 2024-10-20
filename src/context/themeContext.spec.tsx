@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import { ThemeContext, ThemeContextProvider } from "./themeContext";
+import { ThemeContext, ThemeContextProvider } from "./ThemeContext";
 
 describe("Theme context", () => {
   it("should toggle theme", async () => {
