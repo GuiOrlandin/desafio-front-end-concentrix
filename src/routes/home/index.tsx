@@ -104,8 +104,8 @@ export default function Home() {
           ))}
         </CardItemContainer>
       ) : (
-        <CardWithoutItemContainer>
-          <h1>Não contem nenhum item.</h1>
+        <CardWithoutItemContainer $variant={theme}>
+          <h1>Não contém nenhum item.</h1>
         </CardWithoutItemContainer>
       )}
 

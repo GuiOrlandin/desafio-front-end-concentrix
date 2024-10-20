@@ -106,10 +106,11 @@ export const FilterSelectContainer = styled.div`
   display: flex;
   gap: 1rem;
 `;
-export const CardWithoutItemContainer = styled.main`
+export const CardWithoutItemContainer = styled.main<ThemeSelected>`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${({ $variant }) => ($variant === "dark" ? "#FFFEFE" : "#2C2C2D")};
 `;
 export const CardItemContainer = styled.main`
   display: grid;
