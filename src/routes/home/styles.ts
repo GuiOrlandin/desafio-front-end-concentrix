@@ -106,7 +106,11 @@ export const FilterSelectContainer = styled.div`
   display: flex;
   gap: 1rem;
 `;
-
+export const CardWithoutItemContainer = styled.main`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 export const CardItemContainer = styled.main`
   display: grid;
   flex: 1;

@@ -13,6 +13,7 @@ import {
   CreateItemButtonAndToggleThemeContainer,
   PaginationButton,
   FilterSelectContainer,
+  CardWithoutItemContainer,
 } from "./styles";
 import CardItem from "../../components/cardItem";
 import { ItemsContext } from "../../context/ItemsContext";
@@ -96,11 +97,17 @@ export default function Home() {
         </CreateItemButtonAndToggleThemeContainer>
       </header>
 
-      <CardItemContainer>
-        {paginatedItems.map((item) => (
-          <CardItem key={item.id} item={item} />
-        ))}
-      </CardItemContainer>
+      {paginatedItems.length > 0 ? (
+        <CardItemContainer>
+          {paginatedItems.map((item) => (
+            <CardItem key={item.id} item={item} />
+          ))}
+        </CardItemContainer>
+      ) : (
+        <CardWithoutItemContainer>
+          <h1>Não contem nenhum item.</h1>
+        </CardWithoutItemContainer>
+      )}
 
       <PaginationContainer $variant={theme}>
         {pages.map((page) => (
