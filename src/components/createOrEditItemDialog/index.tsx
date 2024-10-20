@@ -6,6 +6,7 @@ import {
   Content,
   CreateButton,
   CreateItemButton,
+  DescriptionContainer,
   ErrorMessage,
   ErrorMessageInDescription,
   FormOfCreateOrEditItem,
@@ -16,12 +17,12 @@ import {
 } from "./style";
 
 import { AiOutlineEdit } from "react-icons/ai";
-import { ThemeContext } from "../../context/ThemeContext";
 import { Item, ItemsContext } from "../../context/ItemsContext";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ThemeContext } from "../../context/themeContext";
 
 interface EditOrCreateItemDialogProps {
   initialItem?: Item;
@@ -125,7 +126,9 @@ export default function EditOrCreateItemDialog({
           {dialogType === "edit" ? (
             <>
               <Title>Edite seu item</Title>
-
+              <DescriptionContainer $variant={theme}>
+                Altere os campos que deseja editar
+              </DescriptionContainer>
               <FormOfCreateOrEditItem onSubmit={handleSubmit(handleEditItem)}>
                 <label>Nome do seu item</label>
                 <input
@@ -171,6 +174,10 @@ export default function EditOrCreateItemDialog({
           ) : (
             <>
               <Title>Crie seu item</Title>
+
+              <DescriptionContainer $variant={theme}>
+                Complete os campos para criar o seu item
+              </DescriptionContainer>
 
               <FormOfCreateOrEditItem onSubmit={handleSubmit(handleCreateItem)}>
                 <label>Nome do seu item</label>

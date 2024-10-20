@@ -14,10 +14,10 @@ import {
   PaginationButton,
   FilterSelectContainer,
 } from "./styles";
-import { ThemeContext } from "../../context/ThemeContext";
 import CardItem from "../../components/cardItem";
 import { ItemsContext } from "../../context/ItemsContext";
 import EditOrCreateItemDialog from "../../components/createOrEditItemDialog";
+import { ThemeContext } from "../../context/themeContext";
 
 export default function Home() {
   const { handleToggleTheme, theme } = useContext(ThemeContext);
@@ -66,6 +66,7 @@ export default function Home() {
               $variant={theme}
               value={filterPriority}
               onChange={(e) => setFilterPriority(e.target.value)}
+              data-testid="filter-item-by-priority"
             >
               <option value="">Todas as Prioridades</option>
               <option value="alta">Alta</option>
@@ -76,6 +77,7 @@ export default function Home() {
               $variant={theme}
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
+              data-testid="filter-item-by-age"
             >
               <option value="newest">Mais Novos</option>
               <option value="oldest">Mais Antigos</option>

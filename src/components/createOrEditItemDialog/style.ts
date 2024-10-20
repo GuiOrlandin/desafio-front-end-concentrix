@@ -17,6 +17,10 @@ export const Title = styled(Dialog.Title)`
   padding: 0;
   margin: 0 0 0 0;
 `;
+export const DescriptionContainer = styled(Dialog.Description)<ThemeSelected>`
+  margin-bottom: 0;
+  color: ${({ $variant }) => ($variant === "light" ? "#3F3D45" : "#FFFEFE")};
+`;
 export const Content = styled(Dialog.Content)<ThemeSelected>`
   flex-direction: column;
   min-width: 16rem;

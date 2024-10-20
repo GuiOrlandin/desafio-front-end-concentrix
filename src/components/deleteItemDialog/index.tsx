@@ -10,7 +10,7 @@ import {
 
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useContext, useState } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../context/themeContext";
 
 interface DeleteItemDialogProps {
   onConfirmDelete: () => void;
@@ -25,7 +25,7 @@ export default function DeleteItemDialog({
   const colorOfDeleteIcon = theme === "dark" ? "white" : "#3F3D45";
 
   return (
-    <Dialog.Root open={open}>
+    <Dialog.Root open={open} aria-describedby={undefined}>
       <Dialog.Trigger asChild>
         <TriggerDialogButton
           onClick={() => setOpen(true)}
@@ -38,6 +38,10 @@ export default function DeleteItemDialog({
         <Overlay />
         <Content $variant={theme}>
           <Dialog.Title>Deseja deletar seu item</Dialog.Title>
+
+          <Dialog.Description>
+            Escolha a opção que deseja executar
+          </Dialog.Description>
 
           <CloseAndSaveChangesButtonsContainer>
             <DeleteButton

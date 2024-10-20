@@ -1,7 +1,5 @@
 import { useContext, useState } from "react";
 
-import { ThemeContext } from "../../context/ThemeContext";
-
 import {
   CardItemContainer,
   Description,
@@ -12,6 +10,7 @@ import {
 import EditOrCreateItemDialog from "../createOrEditItemDialog";
 import { Item, ItemsContext } from "../../context/ItemsContext";
 import DeleteItemDialog from "../deleteItemDialog";
+import { ThemeContext } from "../../context/themeContext";
 
 interface CardItemProps {
   item: Item;
@@ -52,6 +51,7 @@ export default function CardItem({ item }: CardItemProps) {
       $variant={theme}
       $isDeleting={isDeleting}
       $isEdited={IsEdited}
+      data-testid="card-item"
     >
       <NameAndEditOrRemoveButtonsContainer>
         <h1>{item.name}</h1>
